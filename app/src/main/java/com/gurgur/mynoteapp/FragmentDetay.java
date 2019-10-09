@@ -33,7 +33,6 @@ public class FragmentDetay extends Fragment {
 
 
         Bundle bundle = this.getArguments();
-
         if (bundle != null)
         {
             String myValue = bundle.getString("firat", "123");
