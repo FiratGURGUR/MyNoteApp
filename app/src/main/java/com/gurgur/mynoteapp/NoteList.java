@@ -1,5 +1,6 @@
 package com.gurgur.mynoteapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,7 +38,7 @@ public class NoteList extends Fragment {
     ArrayList<HashMap<String, String>> not_liste;
     String note_basliklar[];
     String note_icerik[];
-
+    String note_id[];
 
     @Nullable
     @Override
@@ -68,16 +69,22 @@ public class NoteList extends Fragment {
             noDataimage.setVisibility(View.GONE);
             note_basliklar = new String[not_liste.size()];
             note_icerik = new String[not_liste.size()];
+            note_id = new String[not_liste.size()];
             for(int i=0;i<not_liste.size();i++){
                 note_basliklar[i] = not_liste.get(i).get("not_basligi");
-                NoteModelList.add(new NoteModel(not_liste.get(i).get("not_basligi"),not_liste.get(i).get("not_icerik")));
-
-
-
+                NoteModelList.add(new NoteModel(not_liste.get(i).get("not_basligi"),not_liste.get(i).get("not_icerik"),not_liste.get(i).get("not_id")));
             }
         }
 
-        noteAdapter =new NoteAdapter(NoteModelList,getActivity());
+        noteAdapter =new NoteAdapter(NoteModelList, getActivity(), new CustomItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+
+                String value = NoteModelList.get(position).getNoteid();
+
+
+            }
+        });
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -101,8 +108,6 @@ public class NoteList extends Fragment {
         fragmentTransaction.replace(R.id.frame,fragment);
         fragmentTransaction.commit();
     }
-
-
 
 
 }

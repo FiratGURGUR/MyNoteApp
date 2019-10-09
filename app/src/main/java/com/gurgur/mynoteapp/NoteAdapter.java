@@ -31,10 +31,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     private List<NoteModel> user_list;
     private Context context;
-
-    NoteAdapter(List<NoteModel> user_list, Context context){
+    private CustomItemClickListener listener;
+    NoteAdapter(List<NoteModel> user_list, Context context,CustomItemClickListener listener){
         this.user_list = user_list;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -44,7 +45,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         View vr = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_note_list_item,parent,false);
         final ViewHolder view_holder = new ViewHolder(vr);
 
-
+        vr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClick(view,view_holder.getPosition());
+            }
+        });
 
         return view_holder;
     }

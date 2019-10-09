@@ -4,10 +4,20 @@ public class NoteModel {
 
     private String NoteBaslik;
     private String Noteicerik;
+    private String Noteid;
 
-    public NoteModel(String noteBaslik, String noteicerik) {
+    public NoteModel(String noteBaslik, String noteicerik,String noteid) {
         NoteBaslik = noteBaslik;
         Noteicerik = noteicerik;
+        Noteid = noteid;
+    }
+
+    public String getNoteid() {
+        return Noteid;
+    }
+
+    public void setNoteid(String noteid) {
+        Noteid = noteid;
     }
 
     public String getNoteBaslik() {

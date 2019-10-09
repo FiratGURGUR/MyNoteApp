@@ -87,6 +87,35 @@ public class Database extends SQLiteOpenHelper {
 
 
 
+
+
+
+    public HashMap<String, String> kitapDetay(int id){
+        //Databeseden id si belli olan row u çekmek için.
+        //Bu methodda sadece tek row değerleri alınır.
+        //HashMap bir çift boyutlu arraydir.anahtar-değer ikililerini bir arada tutmak için tasarlanmıştır.
+        //map.put("x","300"); mesala burda anahtar x değeri 300.
+
+        HashMap<String,String> kitap = new HashMap<String,String>();
+        String selectQuery = "SELECT * FROM " + TABLE_NAME+ " WHERE not_id="+id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // Move to first row
+        cursor.moveToFirst();
+        if(cursor.getCount() > 0){
+            kitap.put(NOT_BASLIK, cursor.getString(1));
+            kitap.put(NOT_ICERIK, cursor.getString(2));
+        }
+        cursor.close();
+        db.close();
+        // return kitap
+        return kitap;
+    }
+
+
+
+
     public int getRowCount() {
         // Bu method bu uygulamada kullanılmıyor ama her zaman lazım olabilir.Tablodaki row sayısını geri döner.
         //Login uygulamasında kullanacağız
