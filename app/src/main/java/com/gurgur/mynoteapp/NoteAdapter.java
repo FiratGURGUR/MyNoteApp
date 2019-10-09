@@ -39,10 +39,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public NoteAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View vr = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_note_list_item,parent,false);
-        final NoteAdapter.ViewHolder view_holder = new NoteAdapter.ViewHolder(vr);
+        final ViewHolder view_holder = new ViewHolder(vr);
 
 
 
@@ -50,7 +50,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NoteAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.baslik.setText(user_list.get(position).getNoteBaslik());
     }
