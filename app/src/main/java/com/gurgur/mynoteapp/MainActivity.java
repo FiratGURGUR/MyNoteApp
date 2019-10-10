@@ -1,12 +1,21 @@
 package com.gurgur.mynoteapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,4 +40,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        View view = getLayoutInflater().inflate(R.layout.custom_exit_card_view, null);
+        Button cancel_ = view.findViewById(R.id.cancelbtn);
+        Button exit_ = view.findViewById(R.id.silbtn);
+        builder.setView(view);
+        final AlertDialog dialogExit = builder.create();
+        dialogExit.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        WindowManager.LayoutParams wmlpLogin = dialogExit.getWindow().getAttributes();
+        wmlpLogin.gravity = Gravity.CENTER;
+        dialogExit.show();
+        dialogExit.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        cancel_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogExit.cancel();
+            }
+        });
+        exit_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
+    }
 }

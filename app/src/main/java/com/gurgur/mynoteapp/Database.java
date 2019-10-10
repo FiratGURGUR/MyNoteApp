@@ -81,27 +81,39 @@ public class Database extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         db.close();
-        // return kitap liste
         return kitaplist;
+    }
+
+
+    public void notSil(int id){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, NOT_ID + " = ?",
+                new String[] { String.valueOf(id) });
+        db.close();
+    }
+
+
+
+    public void notDuzenle(String not_baslik, String not_icerik,int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(NOT_BASLIK, not_baslik);
+        values.put(NOT_ICERIK, not_icerik);
+
+        db.update(TABLE_NAME, values, NOT_ID + " = ?",
+                new String[] { String.valueOf(id) });
     }
 
 
 
 
 
-
     public HashMap<String, String> kitapDetay(int id){
-        //Databeseden id si belli olan row u çekmek için.
-        //Bu methodda sadece tek row değerleri alınır.
-        //HashMap bir çift boyutlu arraydir.anahtar-değer ikililerini bir arada tutmak için tasarlanmıştır.
-        //map.put("x","300"); mesala burda anahtar x değeri 300.
-
         HashMap<String,String> kitap = new HashMap<String,String>();
         String selectQuery = "SELECT * FROM " + TABLE_NAME+ " WHERE not_id="+id;
-
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-        // Move to first row
         cursor.moveToFirst();
         if(cursor.getCount() > 0){
             kitap.put(NOT_BASLIK, cursor.getString(1));
@@ -109,25 +121,11 @@ public class Database extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
-        // return kitap
         return kitap;
     }
 
 
 
-
-    public int getRowCount() {
-        // Bu method bu uygulamada kullanılmıyor ama her zaman lazım olabilir.Tablodaki row sayısını geri döner.
-        //Login uygulamasında kullanacağız
-        String countQuery = "SELECT  * FROM " + TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        int rowCount = cursor.getCount();
-        db.close();
-        cursor.close();
-        // return row count
-        return rowCount;
-    }
 
     public void resetTables(){
         //Bunuda uygulamada kullanmıyoruz. Tüm verileri siler. tabloyu resetler.

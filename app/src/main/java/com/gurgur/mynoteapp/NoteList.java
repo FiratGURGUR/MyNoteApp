@@ -44,7 +44,7 @@ public class NoteList extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notelist,container,false);
-        noDataimage = view.findViewById(R.id.imageView3);
+        noDataimage = view.findViewById(R.id.imageView4);
         openAddFragment = view.findViewById(R.id.addNotebtn);
         openAddFragment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +82,12 @@ public class NoteList extends Fragment {
 
                 String value = NoteModelList.get(position).getNoteid();
 
+                FragmentDetay fragment = new FragmentDetay ();
+                Bundle args = new Bundle();
+                args.putString("position", value);
+                fragment.setArguments(args);
+
+              changeFragment(fragment);
 
             }
         });
