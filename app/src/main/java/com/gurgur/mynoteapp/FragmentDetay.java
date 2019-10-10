@@ -93,6 +93,7 @@ public class FragmentDetay extends Fragment implements View.OnClickListener{
                 db.notDuzenle(yeni_baslik,yeni_icerik,note_post);
                 Toast.makeText(getActivity(), "Not güncellendi", Toast.LENGTH_SHORT).show();
                 changeFragment(new NoteList());
+                //firat gurgur
 
                 break;
         }
