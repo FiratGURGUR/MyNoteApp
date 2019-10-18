@@ -4,8 +4,8 @@ SqlLite Database kullanılarak yapılan basit bir not uygulaması.
 
 ### Screenshots
 
-<img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen1.png" width="30%">  <img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen2.png" width="30%">  <img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen2.png" width="30%">
+<img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen10.png" width="30%">  <img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen20.png" width="30%">  <img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen30.png" width="30%">
 
  
 
-<img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen4.png" width="30%">  <img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen5.png" width="30%">  <img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen6.png" width="30%">
+<img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen40.png" width="30%">  <img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen50.png" width="30%">  <img src="https://github.com/FiratGURGUR/MyNoteApp/blob/master/app/src/main/res/drawable/screen60.png" width="30%">
