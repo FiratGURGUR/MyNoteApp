@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+
 public class FragmentNoteAdd extends Fragment {
     Button btnGeri;
     Button btnekle;
@@ -49,7 +50,6 @@ public class FragmentNoteAdd extends Fragment {
                     database.notEkle(baslik,icerik);
 
                     Toast.makeText(getActivity(), "Kayıt işlemi başarılı", Toast.LENGTH_SHORT).show();
-
                     changeFragment(new NoteList());
                 }else {
                     Toast.makeText(getActivity(), "Lütfen alanları doldurunuz", Toast.LENGTH_SHORT).show();
