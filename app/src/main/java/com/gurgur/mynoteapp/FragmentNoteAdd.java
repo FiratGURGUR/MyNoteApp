@@ -13,6 +13,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class FragmentNoteAdd extends Fragment {
     Button btnGeri;
@@ -45,9 +49,13 @@ public class FragmentNoteAdd extends Fragment {
                 baslik = e_baslik.getText().toString().trim();
                 icerik = e_icerik.getText().toString().trim();
 
+                DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm");
+                Date date = new Date();
+                String tarih= dateFormat.format(date);
+
                 if (!baslik.equals("") && !icerik.equals("")){
                     Database database = new Database(getActivity());
-                    database.notEkle(baslik,icerik);
+                    database.notEkle(baslik,icerik,tarih);
 
                     Toast.makeText(getActivity(), "Kayıt işlemi başarılı", Toast.LENGTH_SHORT).show();
                     changeFragment(new NoteList());

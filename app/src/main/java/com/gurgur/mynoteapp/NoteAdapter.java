@@ -1,6 +1,11 @@
 package com.gurgur.mynoteapp;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
-
+    String charString;
+    String searchString="";
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
         public TextView baslik;
@@ -65,7 +72,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
-                String charString = charSequence.toString();
+                charString = charSequence.toString();
+                searchString = charString;
                 if (charString.isEmpty()) {
                     user_listfiltered = user_list;
                 } else {
@@ -101,6 +109,22 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.baslik.setText(user_listfiltered.get(position).getNoteBaslik());
+
+
+        String name = user_listfiltered.get(position).getNoteBaslik().toLowerCase(Locale.getDefault());
+
+        if (name.contains(searchString)) {
+
+            int startPos = name.indexOf(searchString);
+            int endPos = startPos + searchString.length();
+
+            Spannable spanString = Spannable.Factory.getInstance().newSpannable(holder.baslik.getText());
+            spanString.setSpan(new ForegroundColorSpan(Color.WHITE), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spanString.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            holder.baslik.setText(spanString);
+        }
+
     }
 
     @Override

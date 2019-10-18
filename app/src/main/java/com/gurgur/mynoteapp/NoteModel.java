@@ -5,11 +5,21 @@ public class NoteModel {
     private String NoteBaslik;
     private String Noteicerik;
     private String Noteid;
+    private String Notedate;
 
-    public NoteModel(String noteBaslik, String noteicerik,String noteid) {
+    public NoteModel(String noteBaslik, String noteicerik,String noteid,String Notedate) {
         NoteBaslik = noteBaslik;
         Noteicerik = noteicerik;
         Noteid = noteid;
+        Notedate = Notedate;
+    }
+
+    public String getNotedate() {
+        return Notedate;
+    }
+
+    public void setNotedate(String notedate) {
+        Notedate = notedate;
     }
 
     public String getNoteid() {

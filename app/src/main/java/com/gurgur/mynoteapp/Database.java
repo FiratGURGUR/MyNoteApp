@@ -21,6 +21,7 @@ public class Database extends SQLiteOpenHelper {
     private static String NOT_BASLIK = "not_basligi";
     private static String NOT_ID = "not_id";
     private static String NOT_ICERIK = "not_icerik";
+    private static String NOT_DATE ="not_tarih";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,19 +32,21 @@ public class Database extends SQLiteOpenHelper {
         String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
                 + NOT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + NOT_BASLIK + " TEXT,"
-                + NOT_ICERIK + " TEXT"
+                + NOT_ICERIK + " TEXT,"
+                + NOT_DATE + " TEXT"
                  + ")";
         db.execSQL(CREATE_TABLE);
     }
 
 
 
-    public void notEkle(String note_baslik,String note_icerik) {
+    public void notEkle(String note_baslik,String note_icerik,String date) {
         //kitapEkle methodu ise adı üstünde Databese veri eklemek için
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(NOT_BASLIK, note_baslik);
         values.put(NOT_ICERIK, note_icerik);
+        values.put(NOT_DATE, date);
 
 
         db.insert(TABLE_NAME, null, values);
@@ -118,6 +121,7 @@ public class Database extends SQLiteOpenHelper {
         if(cursor.getCount() > 0){
             kitap.put(NOT_BASLIK, cursor.getString(1));
             kitap.put(NOT_ICERIK, cursor.getString(2));
+            kitap.put(NOT_DATE, cursor.getString(3));
         }
         cursor.close();
         db.close();

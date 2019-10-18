@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EdgeEffect;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class FragmentDetay extends Fragment implements View.OnClickListener{
     Button geri;
     Button silbtn;
     Button guncelle;
+    TextView tarihh;
 
     @Nullable
     @Override
@@ -40,6 +42,7 @@ public class FragmentDetay extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_detay,container,false);
 
 
+        tarihh = view.findViewById(R.id.tarihh);
         baslik = view.findViewById(R.id.notbaslik);
         detay = view.findViewById(R.id.notdetay);
         geri = view.findViewById(R.id.button);
@@ -63,6 +66,7 @@ public class FragmentDetay extends Fragment implements View.OnClickListener{
             not = db.kitapDetay(note_post);
             baslik.setText(not.get("not_basligi"));
             detay.setText(not.get("not_icerik"));
+            tarihh.setText(not.get("not_tarih"));
 
         }
 

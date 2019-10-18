@@ -6,7 +6,11 @@ import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,6 +37,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -52,6 +57,7 @@ public class NoteList extends Fragment {
     ArrayList<HashMap<String, String>> not_liste;
     String note_basliklar[];
     String note_icerik[];
+    String note_tarih[];
     String note_id[];
 
     @Nullable
@@ -92,10 +98,11 @@ public class NoteList extends Fragment {
             noDataimage.setVisibility(View.GONE);
             note_basliklar = new String[not_liste.size()];
             note_icerik = new String[not_liste.size()];
+            note_tarih = new String[not_liste.size()];
             note_id = new String[not_liste.size()];
             for(int i=0;i<not_liste.size();i++){
                 note_basliklar[i] = not_liste.get(i).get("not_basligi");
-                NoteModelList.add(new NoteModel(not_liste.get(i).get("not_basligi"),not_liste.get(i).get("not_icerik"),not_liste.get(i).get("not_id")));
+                NoteModelList.add(new NoteModel(not_liste.get(i).get("not_basligi"),not_liste.get(i).get("not_icerik"),not_liste.get(i).get("not_id"),not_liste.get(i).get("not_tarih")));
             }
 
         }
@@ -144,15 +151,11 @@ public class NoteList extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
 
-
                 noteAdapter.getFilter().filter(s.toString());
 
 
             }
         });
-
-
-
 
 
 
@@ -165,9 +168,6 @@ public class NoteList extends Fragment {
         fragmentTransaction.replace(R.id.frame,fragment);
         fragmentTransaction.commit();
     }
-
-
-
 
 
 }
